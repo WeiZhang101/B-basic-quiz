@@ -4,8 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.validation.constraints.Email;
-import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Min;
 import javax.validation.constraints.Size;
 
 
@@ -18,7 +17,7 @@ public class User {
     @Size(min = 1, max = 128, message = "用户名长度不合法")
     private String name;
 
-//    @Pattern(regexp = "/＾1［7－9］＄｜＾［2－9］＼d＄｜＾1＼d｛2｝＄／")
+    @Min(value = 17, message = "年龄必须大于16")
     private long age;
 
     @Size(min = 8, max = 512, message = "地址长度不合法")
@@ -37,5 +36,9 @@ public class User {
 
     public long getId() {
         return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
     }
 }

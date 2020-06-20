@@ -37,4 +37,9 @@ public class UserService {
         }
         return null;
     }
+
+    public void createUser(User user) {
+        user.setId(userMap.size() + 1);
+        userMap.put((int) user.getId(), user);
+    }
 }
