@@ -14,8 +14,8 @@ public class EducationService {
 
     public EducationService() {
         List<Education> educationList = new LinkedList<>();
-        educationList.add(new Education(1, 2000, "title1", "dscp1"));
-        educationList.add(new Education(1, 2001, "title2", "dscp2"));
+        educationList.add(new Education(1, 2000, "First level graduation in Graphic Design", "Eos, explicabo, nam, tenetur et ab eius deserunt aspernatur ipsum ducimus quibusdam "));
+        educationList.add(new Education(1, 2001, "Secondary school specializing in artistic", "Aspernatur, mollitia, quos maxime eius suscipit sed beatae ducimus quaerat quibusda"));
         educationMap.put(1, educationList);
         educationList = new LinkedList<>();
         educationList.add(new Education(2, 2010, "title21", "dscp21"));
@@ -37,7 +37,6 @@ public class EducationService {
             if(educationList.get(0).getUserId() == id){
                 educationAdd.setUserId(id);
                 educationList.add(educationAdd);
-//                educationMap.put((int) id, educationList);
             }
         }
     }

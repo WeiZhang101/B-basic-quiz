@@ -8,23 +8,28 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 
 import javax.validation.ConstraintViolation;
 import javax.validation.ConstraintViolationException;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Set;
 
 @ControllerAdvice
 public class GlobalExceptionHandler {
 
-  @ExceptionHandler(UserAlreadyExistException.class)
-  public ResponseEntity<ErrorResult> handle(UserAlreadyExistException ex) {
-    String code = "400";
-    ErrorResult errorResult = new ErrorResult(code, ex.getMessage());
+  @ExceptionHandler(UserNotFoundException.class)
+  public ResponseEntity<ErrorResult> handle(UserNotFoundException ex) {
+    String time = LocalDateTime.now().toString();
+    Integer code = 400;
+    ErrorResult errorResult = new ErrorResult(time, code, "Not Found", ex.getMessage());
     return ResponseEntity.status(HttpStatus.NOT_FOUND).body(errorResult);
   }
 
   @ExceptionHandler(MethodArgumentNotValidException.class)
   public ResponseEntity<ErrorResult> handle(MethodArgumentNotValidException ex) {
+
+    String time = LocalDateTime.now().toString();
     String message = ex.getBindingResult().getFieldError().getDefaultMessage();
-    String code = "400";
-    ErrorResult errorResult = new ErrorResult(code, message);
+    Integer code = 400;
+    ErrorResult errorResult = new ErrorResult(time, code, "Bad Request", message);
     return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errorResult);
   }
 
@@ -37,8 +42,9 @@ public class GlobalExceptionHandler {
       message = constraint.getMessage();
       break;
     }
-    String code = "400";
-    ErrorResult errorResult = new ErrorResult(code, message);
+    String time = LocalDateTime.now().toString();
+    Integer code = 400;
+    ErrorResult errorResult = new ErrorResult(time, code, "Bad Request", message);
     return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errorResult);
   }
 }

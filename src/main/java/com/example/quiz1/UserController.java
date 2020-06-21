@@ -34,6 +34,9 @@ public class UserController {
 
     @GetMapping("/users/{id}")
     public User getUserInfo(@PathVariable("id") long id){
+        if(!userService.checkExistId(id)){
+            throw new UserNotFoundException("This user id not exist!");
+        }
         return userService.getUserById(id);
     }
 

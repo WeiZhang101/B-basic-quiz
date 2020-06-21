@@ -42,4 +42,11 @@ public class UserService {
         user.setId(userMap.size() + 1);
         userMap.put((int) user.getId(), user);
     }
+
+    public Boolean checkExistId(long id){
+        if(id > userMap.size()){
+            return false;
+        }
+        return true;
+    }
 }
