@@ -1,11 +1,14 @@
 package com.example.quiz1;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.validation.constraints.Min;
 import javax.validation.constraints.Size;
+import java.util.ArrayList;
+import java.util.List;
 
 
 @Data
@@ -25,6 +28,9 @@ public class User {
 
     @Size(min = 0, max = 1024, message = "个人介绍长度不合法")
     private String description;
+
+//    @JsonIgnore
+//    private List<Education> educations = new ArrayList<>();
 
     public User(long id, String name, long age, String avatar, String description) {
         this.id = id;

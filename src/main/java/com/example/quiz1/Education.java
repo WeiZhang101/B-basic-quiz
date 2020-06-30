@@ -3,16 +3,24 @@ package com.example.quiz1;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import javax.persistence.*;
 import javax.validation.constraints.Max;
-import javax.validation.constraints.Past;
 import javax.validation.constraints.Size;
 
 @Data
 @NoArgsConstructor
 public class Education {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
     private long userId;
 
-//    @Past(message = "时间必须是历年")
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "post_id")
+    private User user;
+
     @Max(value = 2020, message = "时间必须是历年")
     private long year;
 
