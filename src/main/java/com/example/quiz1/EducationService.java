@@ -39,5 +39,11 @@ public class EducationService {
                 educationList.add(educationAdd);
             }
         }
+        if(educationMap.get((int)id) == null){
+            List<Education> educationList = new LinkedList<>();
+            educationAdd.setUserId(id);
+            educationList.add(educationAdd);
+            educationMap.put((int)id, educationList);
+        }
     }
 }
