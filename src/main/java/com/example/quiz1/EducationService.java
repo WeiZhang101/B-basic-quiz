@@ -12,15 +12,18 @@ import static org.springframework.beans.factory.config.ConfigurableBeanFactory.S
 public class EducationService {
     private Map<Integer, List<Education>> educationMap = new HashMap<>();
 
-    public EducationService() {
-        List<Education> educationList = new LinkedList<>();
-        educationList.add(new Education(1, 2000, "First level graduation in Graphic Design", "Eos, explicabo, nam, tenetur et ab eius deserunt aspernatur ipsum ducimus quibusdam "));
-        educationList.add(new Education(1, 2001, "Secondary school specializing in artistic", "Aspernatur, mollitia, quos maxime eius suscipit sed beatae ducimus quaerat quibusda"));
-        educationMap.put(1, educationList);
-        educationList = new LinkedList<>();
-        educationList.add(new Education(2, 2010, "title21", "dscp21"));
-        educationList.add(new Education(2, 2011, "title22", "dscp22"));
-        educationMap.put(2, educationList);
+    final EducationRepository educationRepository;
+
+    public EducationService(EducationRepository educationRepository) {
+        this.educationRepository = educationRepository;
+//        List<Education> educationList = new LinkedList<>();
+//        educationList.add(new Education(1, 2000, "First level graduation in Graphic Design", "Eos, explicabo, nam, tenetur et ab eius deserunt aspernatur ipsum ducimus quibusdam "));
+//        educationList.add(new Education(1, 2001, "Secondary school specializing in artistic", "Aspernatur, mollitia, quos maxime eius suscipit sed beatae ducimus quaerat quibusda"));
+//        educationMap.put(1, educationList);
+//        educationList = new LinkedList<>();
+//        educationList.add(new Education(2, 2010, "title21", "dscp21"));
+//        educationList.add(new Education(2, 2011, "title22", "dscp22"));
+//        educationMap.put(2, educationList);
     }
 
     public List<Education> getEducationById(long id){
