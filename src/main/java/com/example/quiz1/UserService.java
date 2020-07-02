@@ -14,12 +14,18 @@ import static org.springframework.beans.factory.config.ConfigurableBeanFactory.S
 @Transactional
 @Service
 public class UserService {
-    private Map<Integer, User> userMap = new HashMap<>();
-
-    public UserService() {
+//    private Map<Integer, User> userMap = new HashMap<>();
+//
+//    public UserService() {
 //        userMap.put(1, new User(1, "Bob123", 24, "https://inews", "Lorem ipsum dolor sit amet"));
 //        userMap.put(2, new User(2, "KAMIL", 18, "https://inews.gtimg.com/newsapp_match/0/3581582328/0",
 //                "Lorem ipsum dolor sit amet, consectetur adipisicing elit. "));
+//    }
+
+    final UserRepository userRepository;
+
+    public UserService(UserRepository userRepository) {
+        this.userRepository = userRepository;
     }
 
     public List<User> getAllUsers() {

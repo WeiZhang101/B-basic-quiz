@@ -20,12 +20,6 @@ public class UserController {
         this.userService = userService;
     }
 
-    @GetMapping("/greet")
-    public String greet() {
-//        GreetingService g = new GreetingService();
-        return userService.sayHi();
-    }
-
     @GetMapping("/users")
     public List<User> getAllUsers() {
         return userService.getAllUsers();
