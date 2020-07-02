@@ -15,7 +15,7 @@ import java.util.List;
 public class UserController {
     private final UserService userService;
 
-//    @Autowired
+    @Autowired
     public UserController(UserService userService) {
         this.userService = userService;
     }
@@ -26,12 +26,7 @@ public class UserController {
     }
 
     @GetMapping("/users/{id}")
-    public User getUserInfo(@PathVariable("id") long id){
-        if(!userService.checkExistId(id)){
-            throw new UserNotFoundException("This user id not exist!");
-        }
-        return userService.getUserById(id);
-    }
+    public User getUserInfo(@PathVariable("id") long id){ return userService.getUserById(id); }
 
     @PostMapping("/users")
     @ResponseStatus(HttpStatus.CREATED)

@@ -5,6 +5,7 @@ import lombok.*;
 import javax.persistence.*;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Size;
+import java.util.List;
 
 @Data
 @Builder
@@ -18,10 +19,11 @@ public class Education {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private long userId;
+//    private long userId;
 
-//    @ManyToOne(cascade = CascadeType.ALL)
-//    private User user;
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinColumn
+    private User user;
 
     @Max(value = 2020, message = "时间必须是历年")
     private long year;
@@ -32,11 +34,11 @@ public class Education {
     @Size(min = 1, max = 4096, message = "教育经历长度不合法")
     private String description;
 
-    public long getUserId() {
-        return userId;
+    public void setUser(User user) {
+        this.user = user;
     }
 
-    public void setUserId(long userId) {
-        this.userId = userId;
-    }
+//    public void setUserId(long userId) {
+//        this.userId = userId;
+//    }
 }

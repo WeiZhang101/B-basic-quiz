@@ -2,49 +2,29 @@ package com.example.quiz1;
 
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.util.*;
 
-
+@Transactional
 @Service
 public class EducationService {
     final EducationRepository educationRepository;
-    public EducationService(EducationRepository educationRepository){
-        this.educationRepository = educationRepository;
-    }
-    private Map<Integer, List<Education>> educationMap = new HashMap<>();
+    final UserService userService;
 
-//    public EducationService() {
-//        List<Education> educationList = new LinkedList<>();
-//        educationList.add(new Education(1, 2000, "First level graduation in Graphic Design", "Eos, explicabo, nam, tenetur et ab eius deserunt aspernatur ipsum ducimus quibusdam "));
-//        educationList.add(new Education(1, 2001, "Secondary school specializing in artistic", "Aspernatur, mollitia, quos maxime eius suscipit sed beatae ducimus quaerat quibusda"));
-//        educationMap.put(1, educationList);
-//        educationList = new LinkedList<>();
-//        educationList.add(new Education(2, 2010, "title21", "dscp21"));
-//        educationList.add(new Education(2, 2011, "title22", "dscp22"));
-//        educationMap.put(2, educationList);
-//    }
+    public EducationService(EducationRepository educationRepository, UserService userService){
+        this.educationRepository = educationRepository;
+        this.userService = userService;
+    }
 
     public List<Education> getEducationById(long id){
-        for(List<Education> educationList: educationMap.values()){
-            if(educationList.get(0).getUserId() == id){
-                return educationList;
-            }
-        }
-        return null;
+        return educationRepository.findAllByUser(userService.getUserById(id));
     }
 
-    public void createEducation(long id, Education educationAdd) {
-        for(List<Education> educationList: educationMap.values()){
-            if(educationList.get(0).getUserId() == id){
-                educationAdd.setUserId(id);
-                educationList.add(educationAdd);
-            }
-        }
-        if(educationMap.get((int)id) == null){
-            List<Education> educationList = new LinkedList<>();
-            educationAdd.setUserId(id);
-            educationList.add(educationAdd);
-            educationMap.put((int)id, educationList);
-        }
+    public void createEducation(long userid, Education educationAdd){
+//        educationAdd.setUserId(userid);
+//        educationAdd.setUser(userService.getUserById(userid));
+        educationAdd.setUser(userService.getUserById(userid));
+        educationRepository.save(educationAdd);
     }
+
 }

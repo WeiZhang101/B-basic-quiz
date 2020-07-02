@@ -2,12 +2,10 @@ package com.example.quiz1;
 
 import lombok.*;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.Size;
+import java.util.List;
 
 
 @Data
@@ -18,7 +16,7 @@ import javax.validation.constraints.Size;
 @Entity
 public class User {
     @Id
-    @GeneratedValue(strategy= GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
     @Size(min = 1, max = 128, message = "用户名长度不合法")
@@ -32,4 +30,11 @@ public class User {
 
     @Size(min = 0, max = 1024, message = "个人介绍长度不合法")
     private String description;
+
+//    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true,mappedBy = "user")
+//    private List<Education> educations;
+//
+//    public void addEducation(Education education) {
+//        educations.add(education);
+//    }
 }

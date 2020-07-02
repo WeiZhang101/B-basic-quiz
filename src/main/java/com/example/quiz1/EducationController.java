@@ -21,7 +21,7 @@ public class EducationController {
     }
 
     @GetMapping("/users/{id}/educations")
-    public List<Education> getUserInfo(@PathVariable("id") long id){
+    public List<Education> getEducationInfo(@PathVariable("id") long id){
         return educationService.getEducationById(id);
     }
 
