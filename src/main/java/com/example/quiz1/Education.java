@@ -6,12 +6,12 @@ import javax.persistence.*;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Size;
 
-@Entity
-@Setter
-@Builder
 @Data
-@NoArgsConstructor
+@Builder
 @AllArgsConstructor
+@NoArgsConstructor
+@Setter
+@Entity
 public class Education {
 
     @Id
@@ -20,11 +20,8 @@ public class Education {
 
     private long userId;
 
-
-//    @JoinColumn(name = "post_id")
-    @ManyToOne(cascade = CascadeType.ALL)
-//    @ManyToOne(fetch = FetchType.LAZY)
-    private User user;
+//    @ManyToOne(cascade = CascadeType.ALL)
+//    private User user;
 
     @Max(value = 2020, message = "时间必须是历年")
     private long year;
@@ -37,13 +34,6 @@ public class Education {
 
     public long getUserId() {
         return userId;
-    }
-
-    public Education(long userId, long year, String title, String description) {
-        this.userId = userId;
-        this.year = year;
-        this.title = title;
-        this.description = description;
     }
 
     public void setUserId(long userId) {

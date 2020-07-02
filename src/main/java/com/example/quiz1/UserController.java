@@ -15,12 +15,11 @@ import java.util.List;
 public class UserController {
     private final UserService userService;
 
-    @Autowired
+//    @Autowired
     public UserController(UserService userService) {
         this.userService = userService;
     }
 
-    @CrossOrigin(origins = "http://localhost:1234")
     @GetMapping("/greet")
     public String greet() {
 //        GreetingService g = new GreetingService();

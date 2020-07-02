@@ -3,6 +3,7 @@ package com.example.quiz1;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -10,15 +11,15 @@ import java.util.Map;
 
 import static org.springframework.beans.factory.config.ConfigurableBeanFactory.SCOPE_PROTOTYPE;
 
-@Scope(SCOPE_PROTOTYPE)
+@Transactional
 @Service
 public class UserService {
     private Map<Integer, User> userMap = new HashMap<>();
 
     public UserService() {
-        userMap.put(1, new User(1, "Bob123", 24, "https://inews", "Lorem ipsum dolor sit amet"));
-        userMap.put(2, new User(2, "KAMIL", 18, "https://inews.gtimg.com/newsapp_match/0/3581582328/0",
-                "Lorem ipsum dolor sit amet, consectetur adipisicing elit. "));
+//        userMap.put(1, new User(1, "Bob123", 24, "https://inews", "Lorem ipsum dolor sit amet"));
+//        userMap.put(2, new User(2, "KAMIL", 18, "https://inews.gtimg.com/newsapp_match/0/3581582328/0",
+//                "Lorem ipsum dolor sit amet, consectetur adipisicing elit. "));
     }
 
     public List<User> getAllUsers() {
